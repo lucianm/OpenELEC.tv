@@ -1,0 +1,49 @@
+From e3311ad241391b430232c219440c014aae63aa51 Mon Sep 17 00:00:00 2001
+From: Lucian Muresan <lucianm@users.sourceforge.net>
+Date: Sun, 24 Apr 2016 20:28:26 +0200
+Subject: [PATCH] swap fb devices
+
+---
+ amlhddevice.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/amlhddevice.c b/amlhddevice.c
+index f2e5105..60c4273 100644
+--- a/amlhddevice.c
++++ b/amlhddevice.c
+@@ -21,7 +21,7 @@ private:
+ 
+ 	static void OnPrimaryDevice(void)
+ 	{
+-		new cFbOsdProvider("/dev/fb1");
++		new cFbOsdProvider("/dev/fb0");
+ 	}
+ 
+ public:
+@@ -60,9 +60,9 @@ bool cPluginAmlHdDevice::Initialize(void)
+ 		if (m_device->Init())
+ 			return false;
+ 
+-		cSysFs::Write("/sys/class/graphics/fb1/mode", "U:1280x720p-0\n");
+-		cSysFs::Write("/sys/class/graphics/fb1/blank", 0);
+-		cSysFs::Write("/sys/class/graphics/fb0/blank", 1);
++//		cSysFs::Write("/sys/class/graphics/fb0/mode", "U:1280x720p-0\n");
++		cSysFs::Write("/sys/class/graphics/fb0/blank", 0);
++		cSysFs::Write("/sys/class/graphics/fb1/blank", 1);
+ 	}
+ 	return true;
+ }
+@@ -74,8 +74,8 @@ bool cPluginAmlHdDevice::Start(void)
+ 
+ void cPluginAmlHdDevice::Stop(void)
+ {
+-	cSysFs::Write("/sys/class/graphics/fb1/blank", 1);
+-	cSysFs::Write("/sys/class/graphics/fb0/blank", 0);
++	cSysFs::Write("/sys/class/graphics/fb0/blank", 1);
++	cSysFs::Write("/sys/class/graphics/fb1/blank", 0);
+ }
+ 
+ VDRPLUGINCREATOR(cPluginAmlHdDevice); // Don't touch this! okay.
+-- 
+2.7.3
+

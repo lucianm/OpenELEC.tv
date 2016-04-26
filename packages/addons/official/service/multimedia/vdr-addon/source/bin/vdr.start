@@ -84,6 +84,10 @@ fi
 if [ "$ENABLE_SOFTCAM" == "true" ] ; then
   VDR_ARG="$VDR_ARG -P dvbapi"
 fi
+# keep Amlogic HD Device at the beginning
+if [ "$ENABLE_AMLHDDEVICE" == "true" ] ; then
+  VDR_ARG="$VDR_ARG -P amlhddevice"
+fi
 VDR_ARG="$VDR_ARG -P wirbelscan -P wirbelscancontrol"
 if [ "$ENABLE_IPTV" == "true" ] ; then
   VDR_ARG="$VDR_ARG -P 'iptv -d $IPTV_NUM_DEVICES'"

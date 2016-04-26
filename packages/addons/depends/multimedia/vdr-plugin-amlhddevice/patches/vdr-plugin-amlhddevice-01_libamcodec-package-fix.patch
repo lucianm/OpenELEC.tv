@@ -1,0 +1,27 @@
+From ec2e6e14a23c99cc10053088e39600ebab3343fc Mon Sep 17 00:00:00 2001
+From: Lucian Muresan <lucianm@users.sourceforge.net>
+Date: Sat, 23 Apr 2016 20:57:10 +0200
+Subject: [PATCH] libamcodec package fix
+
+---
+ Makefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 7b0b31e..857a118 100644
+--- a/Makefile
++++ b/Makefile
+@@ -47,8 +47,8 @@ SOFILE = libvdr-$(PLUGIN).so
+ 
+ ### Includes and Defines (add further entries here):
+ 
+-LDLIBS   += $(shell pkg-config --libs libamcodec)
+-INCLUDES += $(shell pkg-config --cflags libamcodec)
++LDLIBS   += -Wl,--no-as-needed -lamavutils -lamadec -lamcodec
++INCLUDES += -I$(SYSROOT_PREFIX)/usr/include/amcodec
+ 
+ DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
+ 
+-- 
+2.7.3
+

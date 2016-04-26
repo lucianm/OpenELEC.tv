@@ -1,0 +1,27 @@
+From fc8cdb0342f53c5d2e14ed3ab973ab9fa9204bd6 Mon Sep 17 00:00:00 2001
+From: Lucian Muresan <lucianm@users.sourceforge.net>
+Date: Sun, 24 Apr 2016 23:55:35 +0200
+Subject: [PATCH] osd size
+
+---
+ amldevice.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/amldevice.c b/amldevice.c
+index 0ac2ab9..88e293b 100644
+--- a/amldevice.c
++++ b/amldevice.c
+@@ -146,8 +146,8 @@ void cAmlDevice::MakePrimaryDevice(bool On)
+ 
+ void cAmlDevice::GetOsdSize(int &Width, int &Height, double &PixelAspect)
+ {
+-	Width = 1280;
+-	Height = 720;
++	Width = 1920;
++	Height = 1080;
+ 	PixelAspect = (double)Width / Height;
+ }
+ 
+-- 
+2.7.3
+
